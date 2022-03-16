@@ -1,3 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 body {
-    background-color: lightgray;
+    /* background-color: lightgray; */
+    font-family: 'Cinzel', 'Cormorant', serif;
+    color: #F0BA5B;
+    background-color: #214B7C;
+}
+
+#main {
+    margin-top: 120px;
+}
+
+#navbar {
+  /* overflow: hidden; */
+  position: fixed;
+  top: 0;
+  min-width: 320px;
+  width: 100vw;
+  min-height: 100px;
+  height: auto;
+  max-height: 250px;
+  background-color: #5CA1F0;
+  color: #402B06;
+  margin: 0;
+  padding: 2px;
+}
+
+#navbar>div {
+  margin: 0 auto;
+  width: 100%;
+  height: fit-content;
+}
+
+#navbar h1 {
+  padding-left: 0;
+  font-size: 72px;
+  margin: 10px 20px;
+  float: left;
+}
+
+#navbar h1 a:hover {
+  color: #402B06;
+}
+
+#navbar a {
+  color: #402B06;
+  text-decoration: none;
+}
+
+#navbar a:hover {
+  color: #c4861c;
+}
+
+#navbar #login, #navbar #logout {
+  float: right;
+  position: relative;
+  height: 80px;
+  z-index: 1;
+  width: 80px;
+  border-radius: 40px;
+  margin: 0 auto;
+  transform: translate(-30px,8px);
+  border: 4px solid #402B06;
+  align-self: center;
+  text-align: center;
+  font-size: 25px;
+  word-wrap: normal;
+  overflow: hidden;
+}
+
+#navbar nav {
+  width: fit-content;
+  transform: translate(-180px, 25px);
+  float: right;
+  display: inline;
+  position: relative;
+}
+
+#navbar ul {
+  background-color: #5CA1F0;
+  border: 2px solid #402B06;
+  position: absolute;
+  width: fit-content;
+  display: none;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  top: 49px;
+  right: 0px;
+}
+
+#navbar ul hr {
+  margin: 0;
+}
+
+#navbar ul li {
+  position: relative;
+  display: block;
+  font-weight: bold;
+  text-align: center;
+  font-size: 20px;
+  z-index: 2;
+  margin: 5px;
+}
+
+#navbar nav:hover ul {
+  display: block;
+}
+
+#login, #logout {
+    width: 250px;
+    text-align: center;
+    margin: 75px auto;
+}
+
+#login input, #logout input {
+    text-align: center;
+}
+
+#register {
+    width: 250px;
+    text-align: center;
+    margin: 75px auto;
+}
+
+#register div label:after {
+    content: " ";
+    display: block;
+}
+
+#register input {
+    text-align: center;
 }

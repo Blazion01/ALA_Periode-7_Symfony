@@ -1,0 +1,8 @@
+white - normal
+orange - you flagged them
+yellow - they flagged you
+red - one rejected the other
+green - both are interested the other
+
+to flag or accept: &#10003;
+to reject: &#10007;
