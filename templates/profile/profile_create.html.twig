@@ -1,0 +1,53 @@
+{% extends 'profile/index.html.twig' %}
+
+{% block title %}Create Profile{% endblock %}
+
+{% block body %}
+    <div id="profileCreate">
+        <h1>{% if update %}Update{% else %}Create{% endif %} Profile</h1>
+
+        {{ form_start(profileForm) }}
+            <table>
+                <tr>
+                    <td>{{ form_label(profileForm.first_name) }}</td>
+                    <td>{{ form_errors(profileForm.first_name) }}<br>{{ form_widget(profileForm.first_name) }}<br>{{ form_help(profileForm.first_name) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(profileForm.last_name) }}</td>
+                    <td>{{ form_errors(profileForm.last_name) }}<br>{{ form_widget(profileForm.last_name) }}<br>{{ form_help(profileForm.last_name) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(profileForm.country) }}</td>
+                    <td>{{ form_errors(profileForm.country) }}<br>{{ form_widget(profileForm.country) }}<br>{{ form_help(profileForm.country) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(profileForm.province) }}</td>
+                    <td>{{ form_errors(profileForm.province) }}<br>{{ form_widget(profileForm.province) }}<br>{{ form_help(profileForm.province) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(profileForm.city) }}</td>
+                    <td>{{ form_errors(profileForm.city) }}<br>{{ form_widget(profileForm.city) }}<br>{{ form_help(profileForm.city) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(profileForm.age) }}</td>
+                    <td>{{ form_errors(profileForm.age) }}<br>{{ form_widget(profileForm.age) }}<br>{{ form_help(profileForm.age) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(profileForm.gender) }}</td>
+                    <td>{{ form_errors(profileForm.gender) }}<br>{{ form_widget(profileForm.gender) }}<br>{{ form_help(profileForm.gender) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(profileForm.about) }}</td>
+                    <td>{{ form_errors(profileForm.about) }}<br>{{ form_widget(profileForm.about) }}<br>{{ form_help(profileForm.about) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form_label(profileForm.imageName) }}</td>
+                    <td>{{ form_errors(profileForm.imageName) }}<br>{{ form_widget(profileForm.imageName) }}<br>{{ form_help(profileForm.imageName) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><button type="submit" class="btn btn-lg btn-primary">{% if update %}Update{% else %}Create{% endif %} Profile</button></td>
+                </tr>
+            </table>
+        {{ form_end(profileForm) }}
+    </div>
+{% endblock %}

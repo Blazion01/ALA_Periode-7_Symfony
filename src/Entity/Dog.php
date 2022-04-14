@@ -29,9 +29,19 @@ class Dog
     #[ORM\JoinColumn(nullable: false)]
     private $Profile;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $imageName;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -84,12 +94,24 @@ class Dog
 
     public function getProfile(): ?Profile
     {
-        return $this->Profile_ID;
+        return $this->Profile;
     }
 
     public function setProfile(?Profile $Profile_ID): self
     {
-        $this->Profile_ID = $Profile_ID;
+        $this->Profile = $Profile_ID;
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
 
         return $this;
     }

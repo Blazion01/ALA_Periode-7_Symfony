@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=yes">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -20,34 +20,57 @@
             <div>
                 <h1><a href="{{path('index')}}">Dinder</a></h1>
                 <nav>
-                    <img width="50" height="50" src="./build/images/nav/Nav.png" alt="Nav image">
+                    <img width="50" height="50" src="{{relativeBuildPath}}/build/images/nav/Nav.png" alt="Nav image">
                     <ul>
+                        {# <li> #}
+                            {# <a href="#Experience">Experience</a> #}
+                        {# </li> #}
+                        {% if is_granted('ROLE_HAS_PROFILE') %}
+                        {# <hr> #}
                         <li>
-                            <a href="#Experience">Experience</a>
+                            <a href="{{ path('app_show') }}">Wag&Flag</a>
                         </li>
-                {% if user %}
                         <hr>
+                        {# <li> #}
+                            {# <a href="#Flagbox">Flagbox</a> #}
+                        {# </li> #}
+                        {# <hr> #}
                         <li>
-                            <a href="#Wag&Flag">Wag&Flag</a>
+                            <a href="{{ path('app_profile') }}">Profile</a>
                         </li>
-                        <hr>
-                        <li>
-                            <a href="#Flagbox">Flagbox</a>
-                        </li>
+                        {% endif %}
                     </ul>
                 </nav>
-                <a id="logout" href="{{path('app_logout')}}">Log<br>Out</a>
-                {% else %}
-                    </ul>
-                </nav>
-                <a id="login" href="{{path('app_login')}}">Log<br>In</a>
-                {% endif %}
             </div>
+            {% if user %}
+            <a id="logout" href="{{path('app_logout')}}">
+            {% if is_granted('ROLE_HAS_PROFILE') and profileImg %}
+                <img width="80px" height="80px" src="{{ asset('uploads/' ~ profileImg) }}" alt="Log Out">
+            {% elseif is_granted('ROLE_HAS_PROFILE') and profile.getImageName() %}
+                <img width="80px" height="80px" src="{{ asset('uploads/' ~ profile.getImageName()) }}" alt="Log Out">
+            {% else %}
+                Log<br>Out
+            {% endif %}
+            </a>
+            {% else %}
+            <a id="login" href="{{path('app_login')}}">Log<br>In</a>
+            {% endif %}
         </div>
         <div id="main">
+            {% block filteren %}{% endblock %}
             {% if user %}
-            <p id="UserLoggedIn">Hello {{ user }}</p>
+            <p id="UserLoggedIn">Welcome {{ user.getUsername() }}</p>
             {% endif %}
+            <div id="alerts">
+            {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{label}}" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% endfor %}
+            </div>
             {% block body %}{% endblock %}
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

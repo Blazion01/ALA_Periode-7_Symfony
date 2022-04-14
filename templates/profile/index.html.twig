@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+    {# <section> #}
+        <div id="profile">
+            <table>
+                <caption>Your Profile</caption>
+                {% if profile.getImageName() %}
+                <tr>
+                    <td>Profile Image</td>
+                    <td>
+                        <img width="100px" src="{{ asset('uploads/' ~ profile.getImageName()) }}" alt="Profile Picture">
+                    </td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td>First name</td>
+                    <td>{{ profile.getFirstName() }}</td>
+                </tr>
+                <tr>
+                    <td>Last name</td>
+                    <td>{{ profile.getLastName() }}</td>
+                </tr>
+                <tr>
+                    <td>Country</td>
+                    <td>{{ profile.getCountry() }}</td>
+                </tr>
+                <tr>
+                    <td>Province</td>
+                    <td>{{ profile.getProvince() }}</td>
+                </tr>
+                <tr>
+                    <td>City</td>
+                    <td>{{ profile.getCity() }}</td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td>{{ profile.getAge() }}</td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>{{ profile.getGender() }}</td>
+                </tr>
+                <tr>
+                    <td>About</td>
+                    <td>{{ profile.getAbout() }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><a href="{{ path('app_profile_update') }}">Edit Profile</a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="dogs">
+            <table>
+                <caption>Dogs</caption>
+                <tr>
+                    <th></th>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Breed</th>
+                    <th>Age</th>
+                    <th>About</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% if profile.getDogs() %}
+                    {% for dog in profile.getDogs() %}
+                    <tr>
+                        <td></td>
+                        <td>{% if dog.getImageName() %}
+                            <img width="100px" src="{{ asset('uploads/dogs/' ~ dog.getImageName()) }}" alt="{{dog.getName()}} Picture">
+                        {% endif %}</td>
+                        <td>{{dog.getName()}}</td>
+                        <td>{{dog.getBreed()}}</td>
+                        <td>{{dog.getAge()}}</td>
+                        <td>{{dog.getAbout()}}</td>
+                        <td><a href="{{ path('app_dog_update', {'slug': dog.getId()}) }}">Update</a></td>
+                        <td><a class="remove" href="{{ path('app_remove', {'slug': dog.getId(), 'entity': 'dog'}) }}">Remove</a></td>
+                    </tr>
+                    {% endfor %}
+                {% endif %}
+                <tr>
+                    <td colspan="8"><a href="{{ path('app_dog_create') }}">Add dog</a></td>
+                </tr>
+            </table>
+        </div>
+    {# </section> #}
+{% endblock %}

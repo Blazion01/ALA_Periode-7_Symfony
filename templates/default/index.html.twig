@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}Homepage{% endblock %}
 
 {% block body %}
 <style>
@@ -13,14 +13,27 @@
         <div class="alert alert-success">{{ flash_success }}</div>
     {% endfor %}
 {% endif %}
+<div id="homepage">
+    <div class="counters">
+        <div class="profiles">
+            <p>Users:</p>
+            <p class="count">{{ profiles }}</p>
+        </div>
+        <div class="matches">
+            <p>Matches:</p>
+            <p class="count">{{ matches }}</p>
+        </div>
+    </div>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/go0e-swd1/Schooljaar-2/ALA_Periode-7_Symfony/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/go0e-swd1/Schooljaar-2/ALA_Periode-7_Symfony/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
-    </ul>
+    <div class="about">
+        <p>
+            We help you find other dog owners like you.
+            {% if user == null %}
+            <br><br>
+            <a href="{{path('app_login')}}">Log in</a> or <a href="{{path('app_register')}}">Register now</a> to start searching!
+            {% endif %}
+            <br>
+        </p>
+    </div>
 </div>
 {% endblock %}

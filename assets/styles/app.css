@@ -1,29 +1,98 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 body {
-    /* background-color: lightgray; */
-    font-family: 'Cinzel', 'Cormorant', serif;
-    color: #F0BA5B;
-    background-color: #214B7C;
+  font-family: 'Cinzel', 'Cormorant', serif;
+  color: #F0BA5B;
+  background-color: #214B7C;
+  padding-top: 140px;
 }
 
-#main {
-    margin-top: 120px;
+pre {
+  border: 2px solid black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: black;
+  transform: translate(-50%, -50%);
+  background-color: white;
 }
+
+#UserLoggedIn {
+  margin: 15px auto;
+  width: fit-content;
+  text-align: center;
+}
+
+table {
+  caption-side: top;
+}
+
+table, table caption {
+  text-align: center;
+}
+
+table caption {
+  color: #000101;
+}
+
+/* #main { */
+  /* margin-top: 140px; */
+/* } */
+
+#alerts {
+  margin: 10px auto;
+  text-align: center;
+  width: fit-content;
+}
+
+/*
+ * links
+ */
+
+#navbar h1 a:hover {
+  color: #402B06;
+}
+
+#navbar a {
+  color: #402B06;
+  text-decoration: none;
+}
+
+#navbar a:hover {
+  color: #c4861c;
+}
+
+#homepage a, #profile a, #dogs a {
+  color: #000101;
+}
+
+#homepage a:hover, #profile a:hover, #dogs a:hover {
+  color: #7AB8FF;
+}
+
+#dogs a.remove:hover {
+  color: crimson;
+}
+
+/* 
+ * navigatie balk
+ */
 
 #navbar {
   /* overflow: hidden; */
   position: fixed;
   top: 0;
   min-width: 320px;
-  width: 100vw;
+  width: 100%;
   min-height: 100px;
   height: auto;
   max-height: 250px;
+  border-bottom: 5px solid #000101;
   background-color: #5CA1F0;
   color: #402B06;
   margin: 0;
   padding: 2px;
+  z-index: 1;
 }
 
 #navbar>div {
@@ -39,39 +108,10 @@ body {
   float: left;
 }
 
-#navbar h1 a:hover {
-  color: #402B06;
-}
-
-#navbar a {
-  color: #402B06;
-  text-decoration: none;
-}
-
-#navbar a:hover {
-  color: #c4861c;
-}
-
-#navbar #login, #navbar #logout {
-  float: right;
-  position: relative;
-  height: 80px;
-  z-index: 1;
-  width: 80px;
-  border-radius: 40px;
-  margin: 0 auto;
-  transform: translate(-30px,8px);
-  border: 4px solid #402B06;
-  align-self: center;
-  text-align: center;
-  font-size: 25px;
-  word-wrap: normal;
-  overflow: hidden;
-}
-
 #navbar nav {
   width: fit-content;
-  transform: translate(-180px, 25px);
+  margin: 25px auto;
+  transform: translateX(-180px);
   float: right;
   display: inline;
   position: relative;
@@ -108,20 +148,47 @@ body {
   display: block;
 }
 
-#login, #logout {
-    width: 250px;
+#navbar #login, #navbar #logout {
+  float: right;
+  position: relative;
+  height: 80px;
+  z-index: 1;
+  width: 80px;
+  border-radius: 40px;
+  margin: 11px auto;
+  display: inline;
+  border: 4px solid #402B06;
+  align-self: center;
+  text-align: center;
+  font-size: 25px;
+  word-wrap: normal;
+  overflow: hidden;
+}
+
+/* 
+ * form pages
+ */
+
+form {
+  position: relative;
+  z-index: 0;
+}
+
+#login, #logout, #register, #profileCreate, #dogCreate, #remove {
     text-align: center;
     margin: 75px auto;
 }
 
-#login input, #logout input {
-    text-align: center;
+#login, #logout, #register, #remove {
+  width: 360px;
 }
 
-#register {
-    width: 250px;
+#profileCreate, #dogCreate {
+  width: 420px;
+}
+
+#login input, #logout input, #register input, #profileCreate input, #dogCreate input {
     text-align: center;
-    margin: 75px auto;
 }
 
 #register div label:after {
@@ -129,6 +196,159 @@ body {
     display: block;
 }
 
-#register input {
-    text-align: center;
+#profileCreate td, #dogCreate td {
+  position: relative;
+  width: 300px;
+}
+
+#profileCreate label, #dogCreate label {
+  position: absolute;
+  width: 100px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#remove table {
+  margin: 10px auto;
+}
+
+/* 
+ * homepage
+ */
+
+#homepage {
+  text-align: center;
+  background-color: #D19528;
+  border-radius: 100px;
+  border: 5px solid #000101;
+  color: #000101;
+  width: fit-content;
+  min-width: 615px;
+  margin: 0 auto;
+}
+
+#homepage .counters {
+  margin: 0 auto;
+  display: block;
+  width: fit-content;
+  height: fit-content;
+}
+
+#homepage .profiles, #homepage .matches {
+  display: inline-block;
+  width: fit-content;
+  min-width: 220px;
+  height: 150px;
+  padding: 20px;
+  line-height: 36px;
+  border-radius: 45px;
+  margin: 25px;
+  font-size: 20px;
+  font-weight: 700;
+  background-color: #7AB8FF;
+  border: 5px solid #000101;
+  color: #563B0A;
+}
+
+/*
+ * Profile
+ */
+
+section {
+  margin: 10px auto;
+  width: min-content;
+  max-width: 1000px;
+}
+
+#profile, #dogs {
+  text-align: center;
+  display: block;
+  margin: 10px auto;
+  color: #000101;
+  width: fit-content;
+  max-width: 600px;
+  height: fit-content;
+  background-color: #D19528;
+  border-radius: 15px;
+  border: 5px solid #000101;
+}
+
+#profile table, #dogs table {
+  width: 100%;
+}
+
+#profile td, #dogs td {
+  border-top: 2px dashed #000101;
+  font-weight: 600;
+}
+
+#profile tr:first-child td, #dogs tr:nth-child(2) td {
+  border-top: 2px solid #000101;
+}
+
+#profile tr td, #dogs tr td {
+  border-right: 2px dotted #000101;
+}
+
+#profile tr td:last-child, #dogs tr td:last-child {
+  border-right: none
+}
+
+#profile tr:last-child td, #dogs tr:last-child td {
+  border-top: 2px solid #000101;
+  height: fit-content;
+  border-right: none;
+}
+
+/* 
+ * Show pages
+ */
+
+#showProfiles {
+  text-align: center;
+}
+
+#showProfiles .profile {
+  border: 5px solid #000101;
+  border-radius: 50px;
+  background-color: #D19528;
+  margin: 10px auto;
+  color: #000101;
+  width: 600px;
+  height: 250px;
+}
+
+#showProfiles .profile img {
+  border: 2px solid #000101;
+  transform: translateX(-3px);
+  border-top-left-radius: 38px;
+  background-color: #000101;
+}
+
+section.name {
+  text-align: left;
+  margin-top: 0;
+  display: block;
+  width: 100%;
+}
+
+section.name p, section.name img {
+  display: inline;
+}
+
+section.info table {
+  border: 2px solid #000101;
+}
+
+section.info td, section.info th {
+  border-right: 2px dotted #000101;
+}
+
+section.info td:last-child, section.info th:last-child {
+  border-right: none;
+}
+
+section.info th {
+  border-bottom: 2px dashed #000101;
 }

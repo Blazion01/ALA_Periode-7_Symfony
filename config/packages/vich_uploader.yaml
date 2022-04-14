@@ -1,0 +1,9 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        profile_img:
+            uri_prefix: /images/uploads
+            upload_destination: '%kernel.project_dir%/public/images/uploads'
+            namer:
+                service: Vich\UploaderBundle\Naming\HashNamer

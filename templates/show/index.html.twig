@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Wag&Flag{% endblock %}
+
+{% block filteren %}{% endblock %}
+
+{% block body %}
+    <div id="showProfiles">
+        <h2>Total Other Profiles: {{pagination.getTotalItemCount}}</h2>
+        {% if pagination.getTotalItemCount > 0 %}
+            {% for profile in pagination %}
+                <div class="profile">
+                    <section class="name">
+                        <img width="75px" height="75px" src="uploads/{{profile.getImageName()}}" alt="Profile Picture">
+                        <p>{{profile.getFirstName()}} {{profile.getLastName()}}</p>
+                    </section>
+                    <hr>
+                    <section class="info">
+                        <table>
+                            <tr>
+                                <th>Country</th>
+                                {% if profile.getProvince() %}
+                                <th>Province</th>
+                                {% endif %}
+                                {% if profile.getCity() %}
+                                <th>City</th>
+                                {% endif %}
+                                <th>Age</th>
+                                <th>Gender</th>
+                                {% if profile.getDogs() %}
+                                <th>Dogs</th>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td>{{profile.getCountry()}}</td>
+                                {% if profile.getProvince() %}
+                                <td>{{profile.getProvince()}}</td>
+                                {% endif %}
+                                {% if profile.getCity() %}
+                                <td>{{profile.getCity()}}</td>
+                                {% endif %}
+                                <td>{{profile.getAge()}}</td>
+                                <td>{{profile.getGender()}}</td>
+                                {% if profile.getDogs() %}
+                                <td>{{profile.getDogs()|length}}</td>
+                                {% endif %}
+                            </tr>
+                        </table>
+                    </section>
+                    <hr>
+                    <!-- <a href="">View Profile</a> -->
+                </div>
+            {% endfor %}
+        {% else %}
+            <h4>No profiles found.</h4>
+        {% endif %}
+        {{knp_pagination_render(pagination)}}
+    </div>
+{% endblock %}

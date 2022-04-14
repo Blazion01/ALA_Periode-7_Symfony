@@ -6,8 +6,13 @@ use App\Repository\ProfileRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Entity\File as EmbeddedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProfileRepository::class)]
+/** @Vich\Uploadable */
 class Profile
 {
     #[ORM\Id]
@@ -39,15 +44,18 @@ class Profile
     #[ORM\Column(type: 'text', nullable: true)]
     private $about;
 
-    #[ORM\OneToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $User;
-
     #[ORM\OneToMany(mappedBy: 'Profile', targetEntity: Dog::class, orphanRemoval: true)]
     private $dogs;
 
     #[ORM\OneToMany(mappedBy: 'Flagged', targetEntity: Flag::class, orphanRemoval: true)]
     private $flags;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $imageName;
+
+    #[ORM\OneToOne(inversedBy: 'profile', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $User;
 
     public function __construct()
     {
@@ -156,18 +164,6 @@ class Profile
         return $this;
     }
 
-    public function getUser(): ?User
-    {
-        return $this->User_ID;
-    }
-
-    public function setUser(User $User_ID): self
-    {
-        $this->User_ID = $User_ID;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Dog[]
      */
@@ -180,7 +176,7 @@ class Profile
     {
         if (!$this->dogs->contains($dog)) {
             $this->dogs[] = $dog;
-            $dog->setProfileID($this);
+            $dog->setProfile($this);
         }
 
         return $this;
@@ -190,8 +186,8 @@ class Profile
     {
         if ($this->dogs->removeElement($dog)) {
             // set the owning side to null (unless already changed)
-            if ($dog->getProfileID() === $this) {
-                $dog->setProfileID(null);
+            if ($dog->getProfile() === $this) {
+                $dog->setProfile(null);
             }
         }
 
@@ -224,6 +220,30 @@ class Profile
                 $flag->setFlagged(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

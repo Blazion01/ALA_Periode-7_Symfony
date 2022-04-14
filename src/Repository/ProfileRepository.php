@@ -47,4 +47,25 @@ class ProfileRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param string|null $value
+     */
+    public function findAllExceptQuery($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.id != :val')
+            ->setParameter('val', $value)
+        ;
+    }
+
+    public function getUniqueValues($col)
+    {
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT DISTINCT '.$col.' FROM profile';
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+        return $resultSet->fetchAllAssociative();
+    }
 }
