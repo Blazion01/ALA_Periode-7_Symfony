@@ -9,15 +9,15 @@
         {{ form_start(profileForm) }}
             <table>
                 <tr>
-                    <td>{{ form_label(profileForm.first_name) }}</td>
+                    <td>{{ form_label(profileForm.first_name) }}*</td>
                     <td>{{ form_errors(profileForm.first_name) }}<br>{{ form_widget(profileForm.first_name) }}<br>{{ form_help(profileForm.first_name) }}</td>
                 </tr>
                 <tr>
-                    <td>{{ form_label(profileForm.last_name) }}</td>
+                    <td>{{ form_label(profileForm.last_name) }}*</td>
                     <td>{{ form_errors(profileForm.last_name) }}<br>{{ form_widget(profileForm.last_name) }}<br>{{ form_help(profileForm.last_name) }}</td>
                 </tr>
                 <tr>
-                    <td>{{ form_label(profileForm.country) }}</td>
+                    <td>{{ form_label(profileForm.country) }}*</td>
                     <td>{{ form_errors(profileForm.country) }}<br>{{ form_widget(profileForm.country) }}<br>{{ form_help(profileForm.country) }}</td>
                 </tr>
                 <tr>
@@ -29,11 +29,11 @@
                     <td>{{ form_errors(profileForm.city) }}<br>{{ form_widget(profileForm.city) }}<br>{{ form_help(profileForm.city) }}</td>
                 </tr>
                 <tr>
-                    <td>{{ form_label(profileForm.age) }}</td>
+                    <td>{{ form_label(profileForm.age) }}*</td>
                     <td>{{ form_errors(profileForm.age) }}<br>{{ form_widget(profileForm.age) }}<br>{{ form_help(profileForm.age) }}</td>
                 </tr>
                 <tr>
-                    <td>{{ form_label(profileForm.gender) }}</td>
+                    <td>{{ form_label(profileForm.gender) }}*</td>
                     <td>{{ form_errors(profileForm.gender) }}<br>{{ form_widget(profileForm.gender) }}<br>{{ form_help(profileForm.gender) }}</td>
                 </tr>
                 <tr>

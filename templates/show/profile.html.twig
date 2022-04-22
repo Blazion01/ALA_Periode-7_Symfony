@@ -1,0 +1,64 @@
+{% extends 'show/index.html.twig' %}
+{% block body %}
+  {% if showProfile == profile %}
+  <a id="back" href="{{path('app_profile')}}">Go back</a>
+  {% else %}
+  <a id="back" href="{{path('app_show')}}">Go back</a>
+  {% endif %}
+
+  <div id="showProfile">
+    <section class="profile">
+      <section class="name">
+        <img width="150px" height="150px" src="{{asset('uploads/' ~ showProfile.getImageName())}}" alt="Profile Picture">
+        <p>{{showProfile.getFirstName()}} {{showProfile.getLastName()}}</p>
+      </section>
+      <section class="info">
+          <table>
+              <tr>
+                  <th>Country</th>
+                  {% if showProfile.getProvince() %}
+                  <th>Province</th>
+                  {% endif %}
+                  {% if showProfile.getCity() %}
+                  <th>City</th>
+                  {% endif %}
+                  <th>Age</th>
+                  <th>Gender</th>
+              </tr>
+              <tr>
+                  <td>{{showProfile.getCountry()}}</td>
+                  {% if showProfile.getProvince() %}
+                  <td>{{showProfile.getProvince()}}</td>
+                  {% endif %}
+                  {% if showProfile.getCity() %}
+                  <td>{{showProfile.getCity()}}</td>
+                  {% endif %}
+                  <td>{{showProfile.getAge()}}</td>
+                  <td>{{showProfile.getGender()}}</td>
+              </tr>
+          </table>
+          <p class="about"><br><span>About:</span><br>{{showProfile.getAbout()}}<br></p>
+      </section>
+    </section>
+    {% if showProfile.getDogs()|length > 0 %}
+      <section id="showDogs">
+        <table>
+          <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Breed</th>
+            <th>View</th>
+          </tr>
+          {% for dog in showProfile.getDogs() %}
+            <tr>
+              <td>{% if dog.getImageName() %} <img height="50px" width="50px" src="{{asset('uploads/dogs/' ~ dog.getImageName())}}" alt="Image of {{dog.getName()}}">{% endif %}</td>
+              <td>{{dog.getName()}}</td>
+              <td>{{dog.getBreed()}}</td>
+              <td><a href="{{path('app_show_dog', {'slug': dog.getId()})}}">View Dog</a></td>
+            </tr>
+          {% endfor %}
+        </table>
+      </section>
+    {% endif %}
+  </div>
+{% endblock %}

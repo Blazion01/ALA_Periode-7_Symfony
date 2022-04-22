@@ -21,7 +21,7 @@ class Flag
     #[ORM\JoinColumn(nullable: false)]
     private $Flagged;
 
-    #[ORM\Column(type: 'string', length: 3)]
+    #[ORM\Column(type: 'boolean')]
     private $Interested;
 
     public function getId(): ?int
@@ -53,12 +53,12 @@ class Flag
         return $this;
     }
 
-    public function getInterested(): ?string
+    public function getInterested(): ?bool
     {
         return $this->Interested;
     }
 
-    public function setInterested(string $Interested): self
+    public function setInterested(bool $Interested): self
     {
         $this->Interested = $Interested;
 

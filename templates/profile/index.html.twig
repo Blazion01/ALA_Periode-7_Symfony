@@ -48,7 +48,8 @@
                     <td>{{ profile.getAbout() }}</td>
                 </tr>
                 <tr>
-                    <td colspan="2"><a href="{{ path('app_profile_update') }}">Edit Profile</a></td>
+                    <td><a href="{{ path('app_show_profile', {'slug': profile.getId()}) }}">View Profile</a></td>
+                    <td><a href="{{ path('app_profile_update') }}">Edit Profile</a></td>
                 </tr>
             </table>
         </div>
@@ -69,7 +70,7 @@
                 {% if profile.getDogs() %}
                     {% for dog in profile.getDogs() %}
                     <tr>
-                        <td></td>
+                        <td><a href="{{path('app_show_dog', {'slug': dog.getId()})}}">View</a></td>
                         <td>{% if dog.getImageName() %}
                             <img width="100px" src="{{ asset('uploads/dogs/' ~ dog.getImageName()) }}" alt="{{dog.getName()}} Picture">
                         {% endif %}</td>

@@ -1,0 +1,37 @@
+{% extends 'show/index.html.twig' %}
+{% set owner = showDog.getProfile() %}
+{% block body %}
+  {% if owner == profile %}
+  <a id="back" href="{{path('app_profile')}}">Go back</a>
+  {% else %}
+  <a id="back" href="{{path('app_show_profile', {'slug': owner.getId()})}}">Go back to owner</a>
+  {% endif %}
+
+  <div id="showProfile">
+    <section class="profile">
+      <section class="name">
+        <img width="150px" height="150px" src="{{asset('uploads/dogs/' ~ showDog.getImageName())}}" alt="Profile Picture">
+        <p>{{showDog.getName()}}</p>
+      </section>
+      <section class="info">
+          <table>
+              <tr>
+                  <th>Breed</th>
+                  {% if showDog.getAge() %}
+                  <th>Age</th>
+                  {% endif %}
+              </tr>
+              <tr>
+                  <td>{{showDog.getBreed()}}</td>
+                  {% if showDog.getAge() %}
+                  <td>{{showDog.getAge()}}</td>
+                  {% endif %}
+              </tr>
+          </table>
+          {% if showDog.getAbout() %}
+          <p class="about"><br><span>About:</span><br>{{showDog.getAbout()}}<br></p>
+          {% endif %}
+      </section>
+    </section>
+  </div>
+{% endblock %}

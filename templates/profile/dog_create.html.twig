@@ -9,11 +9,11 @@
         {{ form_start(dogForm) }}
             <table>
                 <tr>
-                    <td>{{ form_label(dogForm.name) }}</td>
+                    <td>{{ form_label(dogForm.name) }}*</td>
                     <td>{{ form_errors(dogForm.name) }}<br>{{ form_widget(dogForm.name) }}<br>{{ form_help(dogForm.name) }}</td>
                 </tr>
                 <tr>
-                    <td>{{ form_label(dogForm.breed) }}</td>
+                    <td>{{ form_label(dogForm.breed) }}*</td>
                     <td>{{ form_errors(dogForm.breed) }}<br>{{ form_widget(dogForm.breed) }}<br>{{ form_help(dogForm.breed) }}</td>
                 </tr>
                 <tr>

@@ -27,7 +27,7 @@
                                 {% endif %}
                                 <th>Age</th>
                                 <th>Gender</th>
-                                {% if profile.getDogs() %}
+                                {% if profile.getDogs()|length > 0 %}
                                 <th>Dogs</th>
                                 {% endif %}
                             </tr>
@@ -41,14 +41,14 @@
                                 {% endif %}
                                 <td>{{profile.getAge()}}</td>
                                 <td>{{profile.getGender()}}</td>
-                                {% if profile.getDogs() %}
+                                {% if profile.getDogs()|length > 0 %}
                                 <td>{{profile.getDogs()|length}}</td>
                                 {% endif %}
                             </tr>
                         </table>
                     </section>
                     <hr>
-                    <!-- <a href="">View Profile</a> -->
+                    <a href="{{path('app_show_profile', {'slug': profile.getId() })}}">View Profile</a>
                 </div>
             {% endfor %}
         {% else %}
